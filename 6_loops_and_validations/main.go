@@ -33,6 +33,7 @@ func main() {
 
 	switchExample()
 	switchWithTime()
+	switchWithNoCondition()
 
 }
 
@@ -108,4 +109,19 @@ func switchWithTime() {
 	default:
 		fmt.Println("Too far away.")
 	}
+}
+
+func switchWithNoCondition() {
+	//? switch with no condition
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Print("Good morning!")
+	case t.Hour() < 17:
+		fmt.Print("Good afternoon.")
+	default:
+		fmt.Print("Good evening.")
+	}
+	fmt.Printf(" The time is %v hrs", t.Hour())
+
 }
