@@ -34,7 +34,8 @@ func main() {
 	switchExample()
 	switchWithTime()
 	switchWithNoCondition()
-
+	deferExample()
+	stackedDefer()
 }
 
 func cicleSum(intCicles int) {
@@ -48,7 +49,7 @@ func cicleSum(intCicles int) {
 func doubleUntil(intSalida int) {
 	sum := 1
 	prevSum := 0
-	for sum < intSalida { //?  for loop with only condition ()
+	for sum < intSalida { //?  for loop with only condition	(like a while loop)
 		prevSum = sum
 		sum += sum
 	}
@@ -122,6 +123,20 @@ func switchWithNoCondition() {
 	default:
 		fmt.Print("Good evening.")
 	}
-	fmt.Printf(" The time is %v hrs", t.Hour())
+	fmt.Printf(" The time is %v hrs\n", t.Hour())
 
+}
+
+func deferExample() {
+	//? defer statement
+	defer fmt.Println("world") //? executes after the function returns
+	fmt.Println("hello")
+}
+
+func stackedDefer() {
+	fmt.Println("counting")
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i) //? executes in LIFO order
+	}
+	fmt.Println("done")
 }
