@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"math"
+	"strings"
 )
 
 type I interface {
@@ -129,4 +131,30 @@ func introToStringers() {
 	a := Person{"Arthur Dent", 42} //? struct Person has a method called String
 	z := Person{"Zaphod Beeblebrox", 9001}
 	fmt.Println(a, z)
+}
+
+func introToErrors() {
+	fmt.Printf("\n## Intro to errors ##\n")
+	//? error is a built-in interface
+	if err := runError(); err != nil {
+		fmt.Println(err)
+	}
+}
+
+func introToReaders() {
+	fmt.Printf("\n## Intro to readers ##\n")
+	//?
+	r := strings.NewReader("Hello, Reader!")
+	b := make([]byte, 8)
+	fmt.Println(r)
+	fmt.Println(b)
+
+	for {
+		n, err := r.Read(b)
+		fmt.Printf("n = %v err = %v b = %v\n", n, err, b)
+		fmt.Printf("b[:n] = %q\n", b[:n])
+		if err == io.EOF {
+			break
+		}
+	}
 }
